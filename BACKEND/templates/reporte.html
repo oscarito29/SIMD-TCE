@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Reporte de Pacientes - Traumatismo Craneoencefálico</title>
+    <style>
+        /* Reset de márgenes y paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e6f2ff; /* Azul muy suave, limpio */
+            color: #073763; /* Azul oscuro para texto */
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 2.5rem;
+            color: #045a8d; /* Azul médico */
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        /* Icono estilo cruz médica junto al título */
+        h1::before {
+            content: "⚕️";
+            font-size: 2.5rem;
+            position: absolute;
+            left: calc(50% - 140px);
+            top: 0;
+            color: #045a8d;
+        }
+
+        table {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border-collapse: separate;
+            border-spacing: 0;
+            box-shadow: 0 6px 15px rgba(4, 90, 141, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            background: #ffffff;
+            font-size: 1rem;
+        }
+
+        thead {
+            background: linear-gradient(90deg, #117a8b, #138496); /* tonos azul-verde */
+            color: white;
+        }
+
+        th, td {
+            padding: 16px 22px;
+            text-align: left;
+            border-bottom: 1px solid #d1e7eb;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f0f8fa;
+        }
+
+        tbody tr:hover {
+            background-color: #bee5eb;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Para agregar un pequeño icono de usuario antes del nombre */
+        td:first-child {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        td:first-child::before {
+            content: "👤";
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h1::before {
+                left: calc(50% - 110px);
+                font-size: 1.8rem;
+            }
+            th, td {
+                padding: 12px 10px;
+                font-size: 0.9rem;
+            }
+            table {
+                font-size: 0.9rem;
+            }
+            td:first-child::before {
+                font-size: 1rem;
+                left: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Reporte de Pacientes - Traumatismo Craneoencefálico</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for paciente in datos %}
+            <tr>
+                <td>{{ paciente.nombre }}</td>
+                <td>{{ paciente.edad }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

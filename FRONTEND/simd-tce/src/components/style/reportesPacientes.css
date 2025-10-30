@@ -1,0 +1,150 @@
+.reporte-container {
+  margin: 20px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  background: #fdfdfd;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.buscar-dni {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.buscar-dni input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.buscar-dni button {
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: none;
+  background-color: #245fe0;
+  color: white;
+  cursor: pointer;
+}
+
+.ficha-paciente {
+  border: 2px solid #004080;
+  border-radius: 10px;
+  padding: 20px;
+  background: #f9f9f9;
+  margin-top: 20px;
+}
+
+.logo-consultorio img {
+  display: block;
+  margin: 0 auto 15px auto;
+  width: 100px;
+  height: 100px;
+}
+
+.ficha-paciente h2 {
+  color: #004080;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+section h3 {
+  color: #004080;
+  border-bottom: 2px solid #004080;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+section p {
+  margin: 5px 0;
+  line-height: 1.5;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #e0e0e0;
+}
+
+.btn-print {
+  display: block;
+  margin: 1rem auto 0 auto;
+  padding: 10px 25px;
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Print styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .ficha-paciente,
+  .ficha-paciente * {
+    visibility: visible;
+  }
+
+  .ficha-paciente {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: none;
+    background: white;
+    padding: 0;
+  }
+
+  .btn-print, .buscar-dni {
+    display: none;
+  }
+
+  .logo-consultorio img {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .ficha-paciente, .ficha-paciente * {
+    visibility: visible;
+  }
+
+  .ficha-paciente {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border: none;
+    background-color: white;
+    padding: 0;
+  }
+
+  /* Ocultar botones, inputs, etc. */
+  .btn-print, .buscar-dni {
+    display: none;
+  }
+}

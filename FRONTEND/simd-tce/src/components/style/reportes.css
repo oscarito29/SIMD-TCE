@@ -1,0 +1,48 @@
+.reportes-container {
+  margin-left: 130px; /* se alinea con el sidebar */
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+  transition: margin-left 0.3s ease;
+}
+
+.reportes-container h1 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.reportes-container p {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: #4b5563;
+}
+
+.reportes-container button {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+}
+
+.reportes-container button:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+/* 🔹 Responsive: sin margen lateral en móvil */
+@media (max-width: 768px) {
+  .reportes-container {
+    margin-left: 0;
+    padding: 1rem;
+  }
+}

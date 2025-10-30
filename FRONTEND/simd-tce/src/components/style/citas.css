@@ -1,0 +1,292 @@
+:root {
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --accent: #2b6ef6;
+  --accent-600: #245fe0;
+  --muted: #6b7280;
+  --border: #e6e9ef;
+  --success: #16a34a;
+  --danger: #ef4444;
+  --radius: 10px;
+  --gap: 12px;
+  --pad: 18px;
+  --shadow: 0 6px 18px rgba(29, 31, 41, 0.06);
+  font-family: "Inter", "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* Contenedor del formulario (card) */
+.crear-cita-form {
+  /* max-width: 900px; */
+  margin: 24px auto;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
+  border-radius: calc(var(--radius) + 4px);
+  padding: calc(var(--pad) + 6px);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+  margin-left: 130px;
+  margin-right: 10px;
+  
+
+}
+
+.crear-cita-form .submit-container {
+  grid-column: 1 / -1;   /* ocupa toda la fila del grid */
+  display: flex;
+  justify-content: flex-end; /* alinea a la derecha */
+  margin-top: 10px;
+}
+
+/* Ajustes del botón */
+.crear-cita-form .btn-primary {
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  border-radius: 8px;
+  width: auto;
+}
+
+
+
+/* Grid para campos: dos columnas en pantallas grandes */
+@media (min-width: 800px) {
+  .crear-cita-form {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    margin-left: 130px;
+  }
+
+  /* Hacer que textarea y botón ocupen ambas columnas cuando haga falta */
+  .crear-cita-form .full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Estilo común para inputs, selects y textarea */
+.crear-cita-form select,
+.crear-cita-form input[type="text"],
+.crear-cita-form input[type="date"],
+.crear-cita-form input[type="time"],
+.crear-cita-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  box-sizing: border-box;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease, transform .06s ease;
+
+}
+
+/* Placeholder más suave */
+.crear-cita-form ::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+/* Focus states */
+.crear-cita-form select:focus,
+.crear-cita-form input:focus,
+.crear-cita-form textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 6px 20px rgba(43, 110, 246, 0.08);
+  transform: translateY(-1px);
+}
+
+/* Labels visuales (si deseas añadir) */
+.crear-cita-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Espaciado entre campos (si no usas label, se mantiene limpieza) */
+.crear-cita-form>* {
+  margin: 0;
+}
+
+/* Textarea */
+.crear-cita-form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+/* Botón principal (ocupa la columna completa en mobile, ajusta en desktop) */
+.crear-cita-form button[type="submit"] {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(180deg, var(--accent), var(--accent-600));
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 15px;
+  box-shadow: 0 8px 20px rgba(43, 110, 246, 0.18);
+  transition: transform .12s cubic-bezier(.2, .8, .2, 1), box-shadow .12s ease, opacity .12s ease;
+}
+
+/* Si quieres que el botón esté en la segunda columna en desktop: */
+@media (min-width: 800px) {
+  .crear-cita-form button[type="submit"] {
+    justify-self: end;
+    align-self: end;
+    width: auto;
+    grid-column: 2 / 3;
+  }
+
+  .crear-cita-form button[type="submit"].full-width {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: 220px;
+  }
+}
+
+/* Hover / active */
+.crear-cita-form button[type="submit"]:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px rgba(43, 110, 246, 0.2);
+}
+
+.crear-cita-form button[type="submit"]:active {
+  transform: translateY(-1px) scale(.997);
+}
+
+/* Mensajes (success / error) opcionales */
+.msg {
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.msg.success {
+  background: rgba(22, 163, 74, 0.08);
+  color: var(--success);
+  border: 1px solid rgba(22, 163, 74, 0.12);
+}
+
+.msg.error {
+  background: rgba(239, 68, 68, 0.06);
+  color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.08);
+}
+
+/* Pequeños ajustes visuales para las opciones del select */
+.crear-cita-form select option {
+  padding: 6px 8px;
+}
+
+/* Accesibilidad: foco visible para teclado */
+.crear-cita-form :focus {
+  outline: 3px solid rgba(43, 110, 246, 0.08);
+  outline-offset: 2px;
+}
+
+/* Ajuste final para que el formulario no se vea muy grande en pantallas estrechas */
+@media (max-width: 420px) {
+  .crear-cita-form {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .crear-cita-form button[type="submit"] {
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .crear-cita-form {
+    margin-left: 0;
+    margin-right: 0px;
+
+    padding: 0.5rem;
+  }
+
+  .card-crear-cita-form {
+    font-size: 0.85rem;
+  }
+}
+
+.crear-cita-form {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.crear-cita-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+section {
+  margin-bottom: 30px;
+  background: #fefefe;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f4f4f4;
+}
+
+.alertas ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.alertas li {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+.btn-atender {
+  background-color: #3b82f6;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-atender:hover {
+  background-color: #2563eb;
+}
+
+.estado-atendida {
+  color: green;
+  font-weight: 600;
+}

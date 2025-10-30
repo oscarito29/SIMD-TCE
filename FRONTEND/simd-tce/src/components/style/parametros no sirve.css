@@ -1,0 +1,43 @@
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #eee;
+}
+
+.tabs button {
+  background: transparent;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  color: #555;
+  border-radius: 6px 6px 0 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.tabs button:hover {
+  background: #f4f4f4;
+}
+
+.tabs button.active {
+  background: #0077ff;
+  color: white;
+  font-weight: 600;
+}
+
+/* Grid de inputs (igual que antes) */
+.parametros-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .parametros-grid {
+    grid-template-columns: 1fr;
+  }
+}

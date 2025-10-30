@@ -1,0 +1,104 @@
+/* Contenedor general */
+.medicos-form,
+.medicos-table {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9; /* Fondo suave */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Formulario */
+.medicos-form h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.medicos-form input,
+.medicos-form select,
+.medicos-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.medicos-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.medicos-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Tabla de médicos */
+.medicos-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.medicos-table th,
+.medicos-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.medicos-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.medicos-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.medicos-table tr:hover {
+    background-color: #e6f0ff;
+}
+
+/* Mensajes */
+.medicos-form p {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Estilos del modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}

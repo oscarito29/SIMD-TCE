@@ -1,0 +1,81 @@
+.perfil-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.perfil-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+  color: #0077ff;
+}
+
+/* Formulario */
+.perfil-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 2rem;
+}
+
+/* Labels e inputs */
+.perfil-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.perfil-form input {
+  margin-top: 0.4rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.perfil-form input:focus {
+  border-color: #0077ff;
+  box-shadow: 0 0 5px rgba(0, 119, 255, 0.3);
+  outline: none;
+}
+
+/* Botón */
+.save-btn {
+  grid-column: span 2; /* ocupa todo el ancho */
+  background: #0077ff;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+  margin-top: 1rem;
+}
+
+.save-btn:hover {
+  background: #005fcc;
+  transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .perfil-form {
+    grid-template-columns: 1fr;
+  }
+
+  .save-btn {
+    grid-column: 1;
+    width: 100%;
+  }
+}

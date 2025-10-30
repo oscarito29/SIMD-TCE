@@ -1,0 +1,112 @@
+.bitacora-container {
+  padding: 20px;
+  background: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #ccc;
+  margin-left: 120px;
+  margin-right: 20px;
+}
+
+.filtros-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.filtros-container input,
+.filtros-container select,
+.filtros-container button {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.fecha-filtros {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tabla-bitacora {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.tabla-bitacora th,
+.tabla-bitacora td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.tabla-bitacora th {
+  background: #eaeaea;
+}
+
+.filtro-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 200px; /* Crece hasta un ancho mínimo de 200px */
+  min-width: 150px; 
+}
+
+.filtro-item label {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.filtro-item select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  max-height: 150px; /* Scroll si hay muchas opciones */
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* select {
+  max-height: 150px; 
+  width: 200px;      
+  overflow-y: auto; 
+} */
+
+.select-container {
+  max-height: 150px;   /* altura máxima */
+  width: 200px;
+  overflow-y: auto;    /* scroll vertical si hay muchas opciones */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.select-container select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+@media (max-width: 992px) {
+  .parametros-container {
+    margin-left: 0px; /* sidebar más angosto */
+  }
+}
+
+@media (max-width: 768px) {
+  .parametros-container {
+    margin-left: 0; /* en móvil ocupa todo el ancho */
+    padding: 1rem;
+    margin-right: 0; /* en móvil ocupa todo el ancho */
+
+  }
+
+  .parametros-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .save-btn {
+    width: 100%;
+  }
+}

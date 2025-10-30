@@ -1,0 +1,275 @@
+/* === Reset básico === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1f2937;
+  background-color: #f3f4f6;
+}
+
+/* === Contenedor general === */
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* === Botón menú hamburguesa móvil === */
+.btn-menu {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1100;
+  background: #1e40af;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  font-size: 22px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* === Sidebar === */
+.sidebar {
+  width: 260px;
+  background-color: #1e40af;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 0;
+  position: fixed;
+  height: 100vh;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-title {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  padding: 16px 0;
+  border-bottom: 2px solid #1e3a8a;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-evenly;
+  padding: 8px 16px;
+}
+
+.sidebar-button {
+  background: transparent;
+  border: none;
+  padding: 12px 16px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  color: #cbd5e1;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sidebar-button:hover {
+  background-color: #1e3a8a;
+  color: white;
+}
+
+.sidebar-button.active {
+  background-color: #1e3a8a;
+  color: white;
+  font-weight: 600;
+}
+
+.sidebar-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.sidebar-footer {
+  padding: 12px 0;
+  text-align: center;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* === Contenido principal === */
+.main-content {
+  flex: 1;
+  padding: 24px 32px;
+  overflow-y: auto;
+  margin-left: 130px; /* Solo si el sidebar está presente */
+  transition: margin-left 0.3s ease;
+}
+
+/* Si NO tienes sidebar, elimina el margen lateral */
+/* .main-content {
+  margin-left: 0;
+} */
+
+.welcome-title {
+  font-size: 35px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+/* === Estadísticas === */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.card p {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.bg-green {
+  background-color: #16a34a;
+}
+
+.bg-red {
+  background-color: #dc2626;
+}
+
+.bg-blue {
+  background-color: #2563eb;
+}
+
+/* === Alertas recientes === */
+.alertas-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 32px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.alertas-card h2 {
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.alerta-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 15px;
+}
+
+.alerta-item:last-child {
+  border-bottom: none;
+}
+
+.estado {
+  font-weight: 700;
+}
+
+.pendiente {
+  color: #dc2626;
+}
+
+.atendida {
+  color: #16a34a;
+}
+
+/* === Gráfico === */
+.grafico-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+}
+
+.grafico-card h2 {
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+/* === Overlay para cerrar menú móvil === */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 900;
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .btn-menu {
+    display: block;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.sidebar--abierto {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding: 24px 16px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .welcome-title {
+    font-size: 20px;
+  }
+
+  .card h2 {
+    font-size: 16px;
+  }
+
+  .card p {
+    font-size: 28px;
+  }
+}
