@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./style/parametros.css";
+import { apiFetch } from "../utils/api";
 
 const Parametros = () => {
   const [form, setForm] = useState({
@@ -25,7 +26,8 @@ const Parametros = () => {
 
   // Cargar parámetros desde el backend
   useEffect(() => {
-    fetch("https://simd-tce.duckdns.org/api/parametros")
+    // fetch("https://simd-tce.duckdns.org/api/parametros")
+    fetch("http://localhost:5000/api/parametros")
       .then((res) => res.json())
       .then((data) => {
         if (data && Object.keys(data).length > 0) setForm(data);
@@ -43,7 +45,8 @@ const Parametros = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("https://simd-tce.duckdns.org/api/parametros", {
+      // const res = await apiFetch("https://simd-tce.duckdns.org/api/parametros", {
+      const res = await apiFetch("http://localhost:5000/api/parametros", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

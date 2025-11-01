@@ -30,7 +30,7 @@ const Medicos = () => {
     // Cargar médicos
     const fetchMedicos = () => {
         setLoading(true);
-        fetch('http://localhost:5000/api/medicos')
+        fetch('http://localhost:5000//api/medicos')
             .then(res => res.json())
             .then(data => {
                 setMedicos(data);
@@ -44,7 +44,7 @@ const Medicos = () => {
 
     // Cargar roles
     const fetchRoles = () => {
-        fetch('http://localhost:5000/api/roles')
+        fetch('http://localhost:5000//api/roles')
             .then(res => res.json())
             .then(data => setRoles(data))
             .catch(err => console.log(err));
@@ -119,7 +119,7 @@ const Medicos = () => {
         console.log('Formulario que se va a enviar:', form); // Depurar el formulario
 
         const method = form.id ? 'PUT' : 'POST';
-        const url = form.id ? `http://localhost:5000/api/medicos/editar/${form.id}` : 'http://localhost:5000/api/medicos/registrar';
+        const url = form.id ? `http://localhost:5000//api/medicos/editar/${form.id}` : 'http://localhost:5000//api/medicos/registrar';
 
         fetch(url, {
             method,
@@ -140,7 +140,7 @@ const Medicos = () => {
     // console.log('Formulario que se va a enviar:', form); // Depurar el formulario
 
     const method = form.id ? 'PUT' : 'POST';
-    const url = form.id ? `http://localhost:5000/api/medicos/editar/${form.id}` : 'http://localhost:5000/api/medicos/registrar';
+    const url = form.id ? `http://localhost:5000//api/medicos/editar/${form.id}` : 'http://localhost:5000//api/medicos/registrar';
 
     console.log("URL que se va a utilizar:", url); // Verifica la URL generada
 
@@ -166,7 +166,7 @@ const Medicos = () => {
     // Función para eliminar un médico
     const handleDelete = (id) => {
         if (window.confirm("¿Estás seguro de que quieres eliminar este médico?")) {
-            fetch(`http://localhost:5000/api/medicos/eliminar/${id}`, {
+            fetch(`http://localhost:5000//api/medicos/eliminar/${id}`, {
                 method: 'DELETE',
             })
                 .then(res => res.json())

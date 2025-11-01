@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaEdit, FaTrash, FaPlusCircle, FaSearch, FaCheckCircle, FaEye } from 'react-icons/fa';
 import Swal from "sweetalert2";
 import './style/pacientes.css';
+import { apiFetch } from "../utils/api";
 
 const Pacientes = () => {
   const [pacientes, setPacientes] = useState([]);
@@ -27,7 +28,8 @@ const Pacientes = () => {
   const fetchPacientes = () => {
     const token = localStorage.getItem("token");
 
-    fetch('https://simd-tce.duckdns.org/api/pacientes', {
+    // fetch('https://simd-tce.duckdns.org/api/pacientes', {
+    apiFetch('http://localhost:5000/api/pacientes', {
       headers: {
         "Authorization": `Bearer ${token}`,
       },
@@ -61,7 +63,8 @@ const Pacientes = () => {
   const handleGuardarCambios = () => {
     const token = localStorage.getItem("token");
 
-    fetch(`https://simd-tce.duckdns.org/api/pacientes/editar/${pacienteEditando.dni}`, {
+    // fetch(`https://simd-tce.duckdns.org/api/pacientes/editar/${pacienteEditando.dni}`, {
+    fetch(`http://localhost:5000/api/pacientes/editar/${pacienteEditando.dni}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

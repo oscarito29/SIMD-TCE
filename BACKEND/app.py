@@ -4,20 +4,32 @@ from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
 import jwt
 import datetime
+from datetime import datetime
+import pytz
 
 app = Flask(__name__)
 # CORS(app, resources={r"/api/*": {"origins": "http://3.133.0.79:3000"}})
-CORS(app, resources={r"/api/*": {"origins": "https://simd-tce.duckdns.org"}})
+# CORS(app, resources={r"/api/*": {"origins": "https://simd-tce.duckdns.org"}})
+# CORS(app, resources={r"/api/*": {"origins": "http://127.0.0.1:3000"}})
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:3000"}})
+
 
 # Configuración de MySQL
-app.config['MYSQL_HOST'] = '3.133.0.79'
-app.config['MYSQL_USER'] = 'ogomez'
-app.config['MYSQL_PASSWORD'] = 'oscarito'
-app.config['MYSQL_DB'] = 'simd_tce'
+# app.config['MYSQL_HOST'] = '3.133.0.79'
+app.config['MYSQL_HOST'] = '127.0.0.1'
+# app.config['MYSQL_USER'] = 'ogomez'
+app.config['MYSQL_USER'] = 'root'
+# app.config['MYSQL_PASSWORD'] = 'oscarito'
+app.config['MYSQL_PASSWORD'] = ''
+# app.config['MYSQL_DB'] = 'simd_tce'
+app.config['MYSQL_DB'] = 'simd-tce'
 app.config['SECRET_KEY'] = 'mi_clave_secreta'
-# app.config['MYSQL_PORT'] = 3307
+app.config['MYSQL_PORT'] = 3307
 
 mysql = MySQL(app)
+
+honduras_tz = pytz.timezone("America/Tegucigalpa")
+fecha_honduras = datetime.now(honduras_tz)
 
 # -------------------- LOGIN --------------------
 from werkzeug.security import check_password_hash
@@ -56,13 +68,13 @@ def login():
                     'id': id_medico,
                     'username': username_db,
                     'rol': rol,
-                    'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=2)
+                    'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=3)
                 }, app.config['SECRET_KEY'], algorithm='HS256')
 
                 cur.execute("""
-                    INSERT INTO bitacora (usuario, accion, descripcion)
-                    VALUES (%s, %s, %s)
-                """, (username_db, 'Login', f'Inicio de Sesión'))
+                    INSERT INTO bitacora (usuario, accion, descripcion, fecha)
+                    VALUES (%s, %s, %s, %s)
+                """, (username_db, 'Login', f'Inicio de Sesión', fecha_honduras))
                 mysql.connection.commit()
                 cur.close()
 
@@ -571,12 +583,14 @@ def registrar_paciente():
         dni = data.get('dni')
         nombre = data.get('nombre') or ''
         edad = int(data.get('edad') or 0)
+        fecha_nacimiento = data.get('fecha_nacimiento')
         sexo = data.get('sexo') or 'M'
         lugar_procedencia = data.get('lugar_procedencia') or ''
         diagnostico_inicial = data.get('diagnostico_inicial') or ''
         estado_actual = data.get('estado_actual') or 'Activo'
         medico_responsable = user_data['username']  # Asumimos username del médico
         fecha_ingreso = datetime.datetime.utcnow()
+        # fecha_ingreso = datetime.datetime.utcnow()
 
         cur = mysql.connection.cursor()
 
@@ -588,9 +602,9 @@ def registrar_paciente():
         # 🔹 Insertar paciente
         cur.execute("""
             INSERT INTO pacientes
-            (dni, nombre, edad, sexo, lugar_procedencia, diagnostico_inicial, estado_actual, medico_responsable, fecha_ingreso)
-            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)
-        """, (dni, nombre, edad, sexo, lugar_procedencia, diagnostico_inicial, estado_actual, medico_responsable, fecha_ingreso))
+            (dni, nombre, fecha_nacimiento, edad, sexo, lugar_procedencia, diagnostico_inicial, estado_actual, medico_responsable, fecha_ingreso)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        """, (dni, nombre, fecha_nacimiento, edad, sexo, lugar_procedencia, diagnostico_inicial, estado_actual, medico_responsable, fecha_honduras))
 
         # 🔹 Guardar detalles TCE si aplica
         if data.get("es_tce"):
@@ -1075,10 +1089,12 @@ def monitoreo():
 
     # 🔹 Pacientes asignados al médico
     cur.execute("""
-        SELECT dni, nombre, edad, sexo, estado_actual, fecha_ingreso
-        FROM pacientes
-        WHERE medico_responsable = %s
-        ORDER BY fecha_ingreso DESC
+        SELECT p.dni, p.nombre, p.edad, p.sexo, p.estado_actual, p.fecha_ingreso
+        FROM pacientes p
+        JOIN tce_detalles t ON t.dni = p.dni
+        WHERE p.medico_responsable = %s
+        GROUP BY p.dni
+        ORDER BY p.fecha_ingreso DESC;
     """, (medico_id,))
     pacientes_rows = cur.fetchall()
 
@@ -1180,6 +1196,7 @@ def monitoreo():
 
 @app.route('/api/dashboard', methods=['GET'])
 def dashboard():
+    print(request.headers) 
     token = request.headers.get('Authorization')
     if not token:
         return jsonify({'message': 'Token faltante'}), 401
@@ -1288,7 +1305,7 @@ def obtener_bitacora():
             params.append(desde)
             params.append(hasta)
 
-        query += " ORDER BY fecha DESC"
+        query += " ORDER BY fecha ASC"
         cur.execute(query, params)
         resultados = cur.fetchall()
         columnas = [desc[0] for desc in cur.description]
@@ -1371,6 +1388,6 @@ def parametros():
 
 # -------------------- MAIN --------------------
 if __name__ == '__main__':
-    # app.run(debug=True)
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)  
+
 

@@ -1,9 +1,11 @@
 import React from "react";
 import "./style/reportes.css"; 
+import { apiFetch } from "../utils/api";
 
 const Reportes = () => {
   const descargarReporte = () => {
-    fetch("https://simd-tce.duckdns.org/api/reportes/pdf")
+    // fetch("https://simd-tce.duckdns.org/api/reportes/pdf")
+    apiFetch("http://localhost:5000/api/reportes/pdf")
       .then((res) => {
         if (!res.ok) throw new Error("Error al generar el reporte");
         return res.blob();

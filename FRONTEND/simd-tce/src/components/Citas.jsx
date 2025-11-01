@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import './style/citas.css';
+import { apiFetch } from "../utils/api";
 
 const CrearCita = () => {
     const [form, setForm] = useState({
@@ -16,11 +17,13 @@ const CrearCita = () => {
     const [medicos, setMedicos] = useState([]);
 
     useEffect(() => {
-        fetch("https://simd-tce.duckdns.org/api/pacientes")
+        // fetch("https://simd-tce.duckdns.org/api/pacientes")
+        fetch("http://localhost:5000/api/pacientes")
             .then(res => res.json())
             .then(data => setPacientes(data));
 
-        fetch("https://simd-tce.duckdns.org/api/usuarios/medicos")
+        // fetch("https://simd-tce.duckdns.org/api/usuarios/medicos")
+        fetch("http://localhost:5000/api/usuarios/medicos")
             .then(res => res.json())
             .then(data => setMedicos(data));
     }, []);
@@ -43,7 +46,7 @@ const CrearCita = () => {
     /* const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch("https://simd-tce.duckdns.org/api/citas/crear", {
+            const res = await apiFetch("https://simd-tce.duckdns.org/api/citas/crear", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form)
@@ -87,13 +90,14 @@ const CrearCita = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            /* const res = await fetch("https://simd-tce.duckdns.org/api/citas/crear", {
+            /* const res = await apiFetch("https://simd-tce.duckdns.org/api/citas/crear", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(form)
             }); */
             const token = localStorage.getItem("token");
-            const res = await fetch("https://simd-tce.duckdns.org/api/citas/crear", {
+            // const res = await apiFetch("https://simd-tce.duckdns.org/api/citas/crear", {
+            const res = await apiFetch("http://localhost:5000/api/citas/crear", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

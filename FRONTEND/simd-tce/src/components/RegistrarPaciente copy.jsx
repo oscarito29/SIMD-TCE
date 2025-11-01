@@ -37,7 +37,7 @@ const RegistrarPaciente = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/pacientes", {
+      const res = await apiFetch("http://localhost:5000//api/pacientes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

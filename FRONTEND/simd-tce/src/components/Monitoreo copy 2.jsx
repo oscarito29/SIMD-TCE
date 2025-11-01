@@ -16,7 +16,7 @@ const Monitoreo = () => {
 
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/monitoreo", {
+        const res = await apiFetch("http://localhost:5000//api/monitoreo", {
           headers: {
             "Authorization": `Bearer ${token}`
           }

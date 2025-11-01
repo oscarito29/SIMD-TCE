@@ -32,7 +32,7 @@ const RegistrarPaciente = () => {
     const fetchPacientes = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("http://localhost:5000/api/pacientes", {
+        const res = await apiFetch("http://localhost:5000//api/pacientes", {
           headers: { Authorization: "Bearer " + token },
         });
         const data = await res.json();
@@ -90,7 +90,7 @@ const RegistrarPaciente = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/pacientes", {
+      const res = await apiFetch("http://localhost:5000//api/pacientes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

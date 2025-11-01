@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "./style/password.css";
+import { apiFetch } from "../utils/api";
 
 const Password = () => {
   const [form, setForm] = useState({
@@ -51,7 +52,8 @@ const Password = () => {
     }
 
     try {
-      const res = await fetch("https://simd-tce.duckdns.org/api/cambiar-password", {
+      // const res = await apiFetch("https://simd-tce.duckdns.org/api/cambiar-password", {
+      const res = await apiFetch("http://localhost:5000/api/cambiar-password", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

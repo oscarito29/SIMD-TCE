@@ -23,7 +23,7 @@ const Bitacora = () => {
     useEffect(() => {
         const cargarOpciones = async () => {
             try {
-                const res = await fetch("http://localhost:5000/api/bitacora");
+                const res = await apiFetch("http://localhost:5000//api/bitacora");
                 const data = await res.json();
                 setUsuariosDisponibles(Array.isArray(data.usuarios) ? data.usuarios : []);
                 setAccionesDisponibles(Array.isArray(data.acciones) ? data.acciones : []);
@@ -47,7 +47,7 @@ const Bitacora = () => {
             if (desde) params.append("desde", desde);
             if (hasta) params.append("hasta", hasta);
 
-            const res = await fetch(`http://localhost:5000/api/bitacora?${params.toString()}`);
+            const res = await apiFetch(`http://localhost:5000//api/bitacora?${params.toString()}`);
             const data = await res.json();
 
             setRegistros(Array.isArray(data.bitacora) ? data.bitacora : []);

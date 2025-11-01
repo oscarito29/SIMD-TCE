@@ -1,4 +1,4 @@
-/* === Reset básico === */
+/* === Reset general === */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,92 +6,98 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #1f2937;
-  background: #f3f4f6;
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  line-height: 1.5;
 }
 
+/* === Contenedor principal === */
+.dashboard-container {
+  padding: 1.5rem;
+  margin-left: 140px; /* si tienes sidebar */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* === Título === */
 h1 {
   text-align: center;
   font-size: 1.8rem;
-  margin-bottom: 25px;
+  font-weight: 700;
   color: #2563eb;
 }
 
-/* === Contenedor general === */
-.dashboard-container {
-  padding: 20px;
-  margin-left: 130px; /* ajustar según sidebar */
-}
-
-/* === Título principal === */
-.welcome-title {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 24px;
-  text-align: center;
-  color: #111827;
-}
-
-/* === KPIs === */
+/* === Tarjetas KPI === */
 .kpi-cards {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
 }
 
 .card.kpi {
-  flex: 1;
-  min-width: 180px;
   background: linear-gradient(135deg, #2563eb, #3b82f6);
   color: #fff;
   border-radius: 12px;
-  padding: 20px;
+  padding: 1.2rem;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .card.kpi:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 .card.kpi.critical {
-  background: linear-gradient(135deg, #f44336, #e57373);
+  background: linear-gradient(135deg, #ef4444, #f87171);
 }
 
 .card.kpi h3 {
-  margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
 }
 
 .card.kpi p {
-  font-size: 36px;
+  font-size: 2rem;
   font-weight: 700;
 }
 
 /* === Gráficos === */
 .charts-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1rem;
 }
 
 .chart {
-  flex: 1;
-  min-width: 300px;
-  padding: 20px;
-  border-radius: 12px;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chart h3 {
+  font-size: 1.1rem;
+  color: #334155;
+  margin-bottom: 1rem;
 }
 
 /* === Tablas === */
 .table-section {
-  margin-bottom: 30px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+.table-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #1e3a8a;
 }
 
 .table-wrapper {
@@ -101,38 +107,59 @@ h1 {
 table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
+  font-size: 0.95rem;
 }
 
-th, td {
-  padding: 12px;
+th,
+td {
+  padding: 10px 12px;
   text-align: left;
 }
 
 th {
   background-color: #2563eb;
   color: #fff;
+  font-weight: 600;
 }
 
 tr:nth-child(even) {
-  background-color: #e0f2fe;
+  background-color: #f1f5f9;
+}
+
+.btn-pendiente {
+  background: #facc15;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  color: #1f2937;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.btn-pendiente:hover {
+  background: #fbbf24;
+}
+
+.estado-atendida {
+  color: #16a34a;
+  font-weight: 600;
 }
 
 /* === Alertas === */
 .alertas-section {
-  padding: 20px;
-  border-radius: 12px;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
 }
 
 .alerta-item {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #e5e7eb;
+  align-items: center;
+  padding: 0.8rem;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .alerta-item:last-child {
@@ -147,20 +174,95 @@ tr:nth-child(even) {
   background: #fee2e2;
 }
 
-.estado {
+.alerta-item .estado {
   font-weight: 700;
+  background: #e0e7ff;
+  color: #4338ca;
   padding: 4px 8px;
   border-radius: 6px;
   font-size: 0.85rem;
 }
-
-/* === Responsive === */
+/* === Responsive Móvil Mejorado === */
 @media (max-width: 768px) {
+
   .dashboard-container {
-    margin-left: 0;
-    padding: 10px;
+    margin-left: 0; /* elimina espacio del sidebar */
+    padding: 0.8rem;
+    gap: 1rem;
   }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .kpi-cards {
+    grid-template-columns: 1fr; /* apila tarjetas */
+  }
+
   .charts-container {
+    grid-template-columns: 1fr; /* apila gráficos */
+    gap: 1rem;
+  }
+
+  .chart {
+    padding: 0.5rem;
+    min-height: 220px; /* evita que se achique demasiado */
+  }
+
+  .chart > div {
+    height: 220px !important;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* scroll suave */
+  }
+
+  table {
+    min-width: 400px; /* asegura que las columnas no se rompan */
+    font-size: 0.8rem;
+  }
+
+  th, td {
+    padding: 6px 8px;
+    white-space: nowrap; /* evita que el texto se corte */
+  }
+
+  .btn-pendiente {
+    padding: 2px 6px;
+    font-size: 0.75rem;
+  }
+
+  .estado-atendida {
+    font-size: 0.75rem;
+  }
+
+  .alerta-item {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .alerta-item .estado {
+    font-size: 0.7rem;
+  }
+}
+
+/* Extra pequeño para móviles muy estrechos */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .chart > div {
+    height: 200px !important;
+  }
+
+  table {
+    min-width: 350px;
+  }
+
+  th, td {
+    padding: 5px 6px;
   }
 }

@@ -18,7 +18,7 @@ const Medicos = () => {
   // Cargar médicos
   const fetchMedicos = () => {
     setLoading(true);
-    fetch('http://localhost:5000/api/medicos') // Ajusta endpoint
+    fetch('http://localhost:5000//api/medicos') // Ajusta endpoint
       .then(res => res.json())
       .then(data => {
         setMedicos(data);
@@ -32,7 +32,7 @@ const Medicos = () => {
 
   // Cargar roles
   const fetchRoles = () => {
-    fetch('http://localhost:5000/api/roles') // Endpoint que devuelve roles
+    fetch('http://localhost:5000//api/roles') // Endpoint que devuelve roles
       .then(res => res.json())
       .then(data => setRoles(data))
       .catch(err => console.log(err));
@@ -51,7 +51,7 @@ const Medicos = () => {
   // Registrar nuevo médico
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('http://localhost:5000/api/medicos/registrar', {
+    fetch('http://localhost:5000//api/medicos/registrar', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(form)

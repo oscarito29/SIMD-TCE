@@ -110,3 +110,35 @@
     width: 100%;
   }
 }
+
+.paginacion-numerada {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.paginacion-numerada button {
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.paginacion-numerada button:hover {
+  background-color: #1976d2;
+  color: white;
+}
+
+.paginacion-numerada button.activo {
+  background-color: #1976d2;
+  color: white;
+  font-weight: bold;
+}
+
+.paginacion-numerada button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

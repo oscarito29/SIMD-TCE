@@ -26,7 +26,7 @@ const Bitacora = () => {
             if (desde) params.append("desde", desde);
             if (hasta) params.append("hasta", hasta);
 
-            const res = await fetch(`http://localhost:5000/api/bitacora?${params.toString()}`);
+            const res = await apiFetch(`http://localhost:5000//api/bitacora?${params.toString()}`);
             const data = await res.json();
 
             // ✅ Cargar registros

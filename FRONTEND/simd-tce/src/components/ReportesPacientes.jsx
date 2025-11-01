@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './style/reportesPacientes.css';
+import { apiFetch } from "../utils/api";
 
 const ReportePaciente = () => {
   const [dni, setDni] = useState("");
@@ -7,7 +8,8 @@ const ReportePaciente = () => {
 
   const buscarPaciente = () => {
     if (!dni) return;
-    fetch(`https://simd-tce.duckdns.org/api/pacientes/reporte/${dni}`)
+    // fetch(`https://simd-tce.duckdns.org/api/pacientes/reporte/${dni}`)
+    apiFetch(`http://localhost:5000/api/pacientes/reporte/${dni}`)
       .then(res => res.json())
       .then(data => setPaciente(data))
       .catch(err => alert("Paciente no encontrado o error en la búsqueda"));

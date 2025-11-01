@@ -23,7 +23,7 @@ const Pacientes = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/pacientes')  // Ajusta puerto si usas otro
+    fetch('http://localhost:5000//api/pacientes')  // Ajusta puerto si usas otro
       .then(response => {
         if (!response.ok) {
           throw new Error('Error al cargar pacientes');

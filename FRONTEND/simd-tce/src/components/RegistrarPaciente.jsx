@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import "./style/registrarPaciente.css";
+import { apiFetch } from "../utils/api";
 
 const RegistrarPaciente = () => {
   const [form, setForm] = useState({
@@ -32,7 +33,8 @@ const RegistrarPaciente = () => {
     const fetchPacientes = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("https://simd-tce.duckdns.org/api/pacientes", {
+        // const res = await apiFetch("https://simd-tce.duckdns.org/api/pacientes", {
+        const res = await apiFetch("http://localhost:5000/api/pacientes", {
           headers: { Authorization: "Bearer " + token },
         });
         const data = await res.json();
@@ -90,7 +92,8 @@ const RegistrarPaciente = () => {
     }
 
     try {
-      const res = await fetch("https://simd-tce.duckdns.org/api/pacientes", {
+      // const res = await apiFetch("https://simd-tce.duckdns.org/api/pacientes", {
+      const res = await apiFetch("http://localhost:5000/api/pacientes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

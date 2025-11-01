@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import "./style/roles.css";
 
-const API = "http://localhost:5000/api/roles";
+const API = "http://localhost:5000//api/roles";
 
 const Roles = () => {
   const [roles, setRoles] = useState([]);
@@ -16,7 +16,7 @@ const Roles = () => {
   const fetchRoles = async () => {
     setLoading(true);
     try {
-      const res = await fetch(API);
+      const res = await apiFetch(API);
       if (!res.ok) throw new Error("Error al obtener roles");
       const data = await res.json();
       setRoles(data);
@@ -46,14 +46,14 @@ const Roles = () => {
     }
 
     try {
-      /* const res = await fetch(API, {
+      /* const res = await apiFetch(API, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       }); */
       const token = localStorage.getItem('token'); // el JWT del usuario
 
-      const res = await fetch(API, {
+      const res = await apiFetch(API, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +93,7 @@ const Roles = () => {
     if (!editingId) return;
 
     try {
-      const res = await fetch(`${API}/${editingId}`, {
+      const res = await apiFetch(`${API}/${editingId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -127,7 +127,7 @@ const Roles = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await fetch(`${API}/${rol.id}`, { method: "DELETE" });
+          const res = await apiFetch(`${API}/${rol.id}`, { method: "DELETE" });
           const data = await res.json();
           if (res.ok) {
             Swal.fire("Eliminado", "Rol eliminado correctamente", "success");

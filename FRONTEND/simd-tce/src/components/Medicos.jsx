@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './style/medicos.css';
 import { FaEdit, FaTrash, FaPlusCircle, FaSearch, FaCheckCircle } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { apiFetch } from "../utils/api";
 
 const Medicos = () => {
     const [medicos, setMedicos] = useState([]);
@@ -34,7 +35,8 @@ const Medicos = () => {
     // 📌 Cargar médicos
     const fetchMedicos = () => {
         setLoading(true);
-        fetch('https://simd-tce.duckdns.org/api/medicos')
+        // fetch('https://simd-tce.duckdns.org/api/medicos')
+        apiFetch('http://localhost:5000/api/medicos')
             .then(res => res.json())
             .then(data => {
                 setMedicos(data);
@@ -48,7 +50,8 @@ const Medicos = () => {
 
     // 📌 Cargar roles
     const fetchRoles = () => {
-        fetch('https://simd-tce.duckdns.org/api/roles')
+        // fetch('https://simd-tce.duckdns.org/api/roles')
+        fetch('http://localhost:5000/api/roles')
             .then(res => res.json())
             .then(data => setRoles(data))
             .catch(err => console.log(err));
@@ -154,8 +157,10 @@ const Medicos = () => {
 
         const method = form.id ? 'PUT' : 'POST';
         const url = form.id
-            ? `https://simd-tce.duckdns.org/api/medicos/editar/${form.id}`
-            : 'https://simd-tce.duckdns.org/api/medicos/registrar';
+            /* ? `https://simd-tce.duckdns.org/api/medicos/editar/${form.id}`
+            : 'https://simd-tce.duckdns.org/api/medicos/registrar'; */
+            ? `http://localhost:5000/api/medicos/editar/${form.id}`
+            : 'http://localhost:5000/api/medicos/registrar';
 
         const token = localStorage.getItem('token');
 
@@ -193,7 +198,8 @@ const Medicos = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 const token = localStorage.getItem('token');
-                fetch(`https://simd-tce.duckdns.org/api/medicos/estado/${medico.id}`, {
+                // fetch(`https://simd-tce.duckdns.org/api/medicos/estado/${medico.id}`, {
+                fetch(`http://localhost:5000/api/medicos/estado/${medico.id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

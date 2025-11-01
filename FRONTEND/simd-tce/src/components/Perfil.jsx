@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import './style/perfil.css';
+import { apiFetch } from "../utils/api";
 
 const Perfil = () => {
   const [form, setForm] = useState({
@@ -27,7 +28,8 @@ const Perfil = () => {
       return;
     }
 
-    fetch("https://simd-tce.duckdns.org/api/perfil", {
+    // fetch("https://simd-tce.duckdns.org/api/perfil", {
+    apiFetch("http://localhost:5000/api/perfil", {
       headers: {
         "Authorization": `Bearer ${token}`,  // 🔹 así lo espera Flask
       },
@@ -57,7 +59,8 @@ const Perfil = () => {
     e.preventDefault();
     const token = localStorage.getItem("token");
 
-    fetch("https://simd-tce.duckdns.org/api/perfil", {
+    // fetch("https://simd-tce.duckdns.org/api/perfil", {
+    apiFetch("http://localhost:5000/api/perfil", {
       method: "PUT",
       headers: { 
         "Content-Type": "application/json",

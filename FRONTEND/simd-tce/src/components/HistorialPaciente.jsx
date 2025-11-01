@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import "./style/historial.css";
+import { apiFetch } from "../utils/api";
 
 const HistorialPaciente = () => {
   const { dni } = useParams(); 
@@ -23,7 +24,8 @@ const HistorialPaciente = () => {
   // 🔹 Traer historial del paciente
   const fetchHistorial = async () => {
     try {
-      const res = await fetch(`https://simd-tce.duckdns.org/api/pacientes/${dni}/historial`, {
+      // const res = await apiFetch(`https://simd-tce.duckdns.org/api/pacientes/${dni}/historial`, {
+      const res = await apiFetch(`http://localhost:5000/api/pacientes/${dni}/historial`, {
         headers: { "Authorization": `Bearer ${token}` },
       });
 
@@ -50,7 +52,8 @@ const HistorialPaciente = () => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`https://simd-tce.duckdns.org/api/pacientes/${dni}/historial`, {
+      // const res = await apiFetch(`https://simd-tce.duckdns.org/api/pacientes/${dni}/historial`, {
+      const res = await apiFetch(`http://localhost:5000/api/pacientes/${dni}/historial`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
